@@ -1,15 +1,14 @@
 import React from "react";
-import Home from "../pages/Home";
-import About from "../pages/About";
-import Users from "../pages/Users";
-import { Route, Routes, Link } from "react-router-dom";
+
+import { Link } from "react-router-dom";
+import { BsCart4 } from "react-icons/bs";
 
 const Navbar = () => {
   return (
     <div>
       <div className="mainNav">
         <div className="logo">
-            <span >StarrCart</span>
+          <a href="/">StarrCart</a>
         </div>
         <nav>
           <ul className="nav-bar">
@@ -24,12 +23,14 @@ const Navbar = () => {
             </li>
           </ul>
         </nav>
+        <div className="cart">
+        
+          <span>
+            <BsCart4 color="gray" fontSize="1.5em" />
+            <div className="num-cart">1</div>
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
+          </span>
+        </div>
       </div>
     </div>
   );
