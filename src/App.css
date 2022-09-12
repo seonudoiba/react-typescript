@@ -70,3 +70,33 @@
   height:.8rem;
   border-radius:.8rem;
 }
+.banner{
+  /* grid sm:grid-cols-2 mt-2 m-4 md:grid-cols-4 gap-4 */
+  display:grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 2rem;
+  padding: 3rem;
+ 
+ 
+}
+.image{
+  width:200px;
+  height:210px;
+}
+.truncate {
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.thumbnail {
+  border: 1px solid
+}
+.title {
+  font-weight: 500;
+}
+.image-container {
+  display: flex;
+  justify-content:center;
+}
