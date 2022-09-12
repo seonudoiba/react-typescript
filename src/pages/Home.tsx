@@ -4,7 +4,7 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
+import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 
@@ -46,7 +46,7 @@ const Home = ({ products }: ProductsProps) => {
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
         {products?.map((product, index) => (
-          <Grid item xs={2} sm={4} md={3} key={index}>
+          <Grid item xs={12} sm={4} md={3} key={index}>
             <Card sx={{ maxWidth: 345 }}>
               <CardActionArea>
                 {/* <CardMedia
@@ -69,7 +69,7 @@ const Home = ({ products }: ProductsProps) => {
               </CardActionArea>
               <CardActions>
                 <Button size="small" color="primary">
-                  Share
+                <Rating precision={0.1} name="read-only" value={product.rating.rate} readOnly />
                 </Button>
               </CardActions>
             </Card>

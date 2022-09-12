@@ -1,23 +1,39 @@
+import React from "react";
 
-    //   {products?.map((product) => {
-    //     return(<>
-    //     {/* <h1 key={product.id}>{product.title}</h1> */}
-    //     <Thumbnail product={product}/>
-    //     </>
-        
-    //     ) 
-        
-    //   })}
+import { Link } from "react-router-dom";
+import { BsCart4 } from "react-icons/bs";
 
-    import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
-
-export default function MultiActionAreaCard() {
+const Navbar = () => {
   return (
-    
+    <div>
+      <div className="mainNav">
+        <div className="logo">
+          <a href="/">StarrCart</a>
+        </div>
+        <nav>
+          <ul className="nav-bar">
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/users">Users</Link>
+            </li>
+          </ul>
+        </nav>
+        <div className="cart">
+        
+          <span>
+            <BsCart4 color="gray" fontSize="1.5em" />
+            <div className="num-cart">1</div>
+
+          </span>
+        </div>
+      </div>
+    </div>
   );
-}
+};
+
+export default Navbar;
