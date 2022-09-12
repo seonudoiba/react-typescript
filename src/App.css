@@ -54,6 +54,7 @@
   height:2.6rem;
   border-radius:2.6rem;
   background-color:white;
+  cursor: pointer;
 }
 .num-cart{
   display:flex;
@@ -69,6 +70,8 @@
   width:.8rem;
   height:.8rem;
   border-radius:.8rem;
+  
+  
 }
 .banner{
   /* grid sm:grid-cols-2 mt-2 m-4 md:grid-cols-4 gap-4 */
@@ -88,13 +91,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.thumbnail {
-  border: 1px solid
-}
-.title {
-  font-weight: 500;
 }
 .image-container {
   display: flex;
