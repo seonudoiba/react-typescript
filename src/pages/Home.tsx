@@ -7,6 +7,8 @@ import CardContent from "@mui/material/CardContent";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
+import { IconButton } from "@mui/material";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -39,15 +41,18 @@ const Home = ({ products }: ProductsProps) => {
   //   console.log(star)
   //   console.log('star')
   return (
-    <Box sx={{ flexGrow: 1 }} pt={0.5}>
+    <Box
+      sx={{ flexGrow: 1}}
+      pt={0.5}
+    >
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
         {products?.map((product, index) => (
-          <Grid item xs={12} sm={4} md={3} key={index}>
-            <Card sx={{ maxWidth: 345 }}>
+          <Grid sx={{ display: "flex", justifyContent: "center", alignItems: "center"}} item xs={12} sm={4} md={3} key={index}>
+            <Card sx={{ maxWidth: 410 }}>
               <CardActionArea>
                 {/* <CardMedia
                   component="img"
@@ -56,7 +61,11 @@ const Home = ({ products }: ProductsProps) => {
                   alt="green iguana"
                 /> */}
                 <div className="image-container">
-                  <img className="image" src={product.image} alt={product.title} />
+                  <img
+                    className="image"
+                    src={product.image}
+                    alt={product.title}
+                  />
                 </div>
                 <CardContent>
                   <Typography gutterBottom variant="h5" noWrap component="div">
@@ -67,11 +76,29 @@ const Home = ({ products }: ProductsProps) => {
                   </Typography>
                 </CardContent>
               </CardActionArea>
-              <CardActions>
+
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  p: 1,
+                  m: 1,
+                  bgcolor: "background.paper",
+                  borderRadius: 1,
+                }}
+              >
                 <Button size="small" color="primary">
-                <Rating precision={0.1} name="read-only" value={product.rating.rate} readOnly />
+                  <Rating
+                    precision={0.1}
+                    name="read-only"
+                    value={product.rating.rate}
+                    readOnly
+                  />
                 </Button>
-              </CardActions>
+                <IconButton color="primary" aria-label="add to shopping cart">
+                  <AddShoppingCartIcon />
+                </IconButton>
+              </Box>
             </Card>
           </Grid>
         ))}

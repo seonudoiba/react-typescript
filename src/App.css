@@ -9,14 +9,7 @@
   align-items:center;
   
 }
-.nav-bar > li, .nav-bar > li > a{
-  list-style:none;
-  color: #ffffff;
-  padding: 1rem 0;
-  font-size:1.2rem;
-  text-decoration: none;
 
-}
 .mainNav{
   background-color:blue;
   display:grid;
@@ -70,7 +63,7 @@
   width:.8rem;
   height:.8rem;
   border-radius:.8rem;
-  
+
   
 }
 .banner{
@@ -95,4 +88,15 @@
 .image-container {
   display: flex;
   justify-content:center;
+}
+.menu-link, .nav-link{
+  list-style:none;
+  color: #ffffff;
+  padding: 1rem 0;
+  text-decoration: none;
+}
+.nav-link{
+  color: rgb(25,118,210);
+  padding: 0 6rem;
+ 
 }
