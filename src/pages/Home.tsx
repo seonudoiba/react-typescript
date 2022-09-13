@@ -1,28 +1,14 @@
-import { experimentalStyled as styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions } from "@mui/material";
-import { IconButton } from "@mui/material";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { Button, CardActionArea } from "@mui/material";
+import { useState } from "react";
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(2),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
-
-interface user {
-  map(arg0: (item: any) => JSX.Element): import("react").ReactNode;
-}
 type ProductsProps = {
-  products?:
+  products:
     | {
         id: number;
         title: string;
@@ -31,12 +17,34 @@ type ProductsProps = {
         image: string;
         category: string;
         description: string;
-      }[]
-    | null;
+      }[]| null;
 };
+type CartProps={
+  getCart: (params: any) => any
+}
 
-const Home = ({ products }: ProductsProps) => {
+type Props = ProductsProps & CartProps;
+const Home: React.FC<Props> = ({ products, getCart }) => {
   // const star = useContext(FavContext);
+
+  let [Cart, SetCart] = useState<string[]>([]);
+  getCart(Cart)
+
+  let AddToCart = (event: React.MouseEvent<HTMLElement>) : void=> {
+    let eventer = event.target as HTMLInputElement
+    SetCart([...Cart, JSON.parse(eventer.value)]);
+    
+    // SetCart({
+    //     id: 5,
+    //     title: 'dgfs',
+    //     price: 45,
+    //     rating: { rate: 45, count: 45 },
+    //     image: 'string',
+    //     category: 'string',
+    //     description: 'string',
+    // });
+    // (prevstate) => prevstate ? [...prevstate, event.target.value] //
+  };
 
   //   console.log(star)
   //   console.log('star')
@@ -56,8 +64,10 @@ const Home = ({ products }: ProductsProps) => {
             }}
             item
             xs={12}
-            sm={4}
+            sm={6}
             md={3}
+            lg={3}
+            xl={2}
             key={index}
           >
             <Card sx={{ maxWidth: 350 }}>
@@ -103,7 +113,12 @@ const Home = ({ products }: ProductsProps) => {
                     readOnly
                   />
                 </Button>
-                <Button  variant="contained" size="small"  aria-label="add to shopping cart">
+                <Button
+                  onClick={AddToCart}
+                  value={JSON.stringify(product)}
+                  variant="contained"
+                  size="small"
+                  aria-label="add to shopping cart">
                   Add to Cart
                 </Button>
               </Box>

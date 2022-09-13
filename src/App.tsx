@@ -6,7 +6,7 @@ import Users from "./pages/Users";
 import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import axios from "axios";
-import Navbarr from "./components/Navbarr";
+import Cart from "./pages/Cart";
 
 interface Products {
   // map(arg0: (item: any) => JSX.Element): import('react').ReactNode;
@@ -16,6 +16,30 @@ interface Products {
 }
 
 function App() {
+  let [CartList, setCartList] = useState<{
+    id: number;
+    title: string;
+    price: number;
+    rating: { rate: number; count: number };
+    image: string;
+    category: string;
+    description: string;
+  }[]
+| null>([]);
+  
+  let getCart = (
+    CartItems:
+      | {
+          id: number;
+          title: string;
+          price: number;
+          rating: { rate: number; count: number };
+          image: string;
+          category: string;
+          description: string;
+        }[]
+      | null
+  ) => setCartList( CartItems );
   const [Products, setProducts] = useState(null);
 
   useEffect(() => {
@@ -30,13 +54,15 @@ function App() {
   console.log(Products);
   return (
     <Router>
-      <Navbar products={Products}/>
+      <Navbar products={Products} CartList={CartList} />
+      
 
       {/* <h1>{Products[1].name}</h1> */}
       <Routes>
-        <Route path="/" element={<Home products={Products} />} />
+        <Route path="/" element={<Home products={Products} getCart={getCart} />} />
         <Route path="/users" element={<Users />} />
         <Route path="/about" element={<About />} />
+        <Route path="/cart" element={<Cart CartList={CartList}/>} />
       </Routes>
     </Router>
   );

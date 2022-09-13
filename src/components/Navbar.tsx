@@ -12,7 +12,6 @@ import InputBase from "@mui/material/InputBase";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import { Link } from "react-router-dom";
 import { BsCart4 } from "react-icons/bs";
 import SearchIcon from "@mui/icons-material/Search";
@@ -70,8 +69,21 @@ type ProductsProps = {
       }[]
     | null;
 };
-
-const ResponsiveAppBar = ({ products }: ProductsProps) => {
+type CartProps = {
+  CartList?:
+    | {
+        id: number;
+        title: string;
+        price: number;
+        rating: { rate: number; count: number };
+        image: string;
+        category: string;
+        description: string;
+      }[]
+    | null;
+};
+type Props = ProductsProps & CartProps;
+const ResponsiveAppBar: React.FC<Props> = ({ products, CartList }) => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -92,6 +104,7 @@ const ResponsiveAppBar = ({ products }: ProductsProps) => {
     setCart(null);
   };
   const settings = ["Profile", "Account", "Dashboard", "Logout"];
+  console.log(1);
 
   return (
     <AppBar position="static">
@@ -238,12 +251,14 @@ const ResponsiveAppBar = ({ products }: ProductsProps) => {
             <Tooltip title="Open Cart">
               <IconButton onClick={handleOpenCart} sx={{ px: 1 }}>
                 <Typography textAlign="center">
-                  <div className="cart">
-                    <span>
-                      <BsCart4 color="gray" fontSize="1.5em" />
-                      <div className="num-cart">1</div>
-                    </span>
-                  </div>
+                  <Link to="/cart">
+                    <div className="cart">
+                      <span>
+                        <BsCart4 color="gray" fontSize="1.5em" />
+                        <div className="num-cart">{CartList?.length}</div>
+                      </span>
+                    </div>
+                  </Link>
                 </Typography>
               </IconButton>
             </Tooltip>
