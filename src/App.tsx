@@ -30,7 +30,7 @@ function App() {
   console.log(Products);
   return (
     <Router>
-      <Navbar />
+      <Navbar products={Products}/>
 
       {/* <h1>{Products[1].name}</h1> */}
       <Routes>

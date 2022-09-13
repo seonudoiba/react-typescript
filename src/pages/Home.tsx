@@ -103,9 +103,9 @@ const Home = ({ products }: ProductsProps) => {
                     readOnly
                   />
                 </Button>
-                <IconButton color="primary" aria-label="add to shopping cart">
-                  <AddShoppingCartIcon />
-                </IconButton>
+                <Button  variant="contained" size="small"  aria-label="add to shopping cart">
+                  Add to Cart
+                </Button>
               </Box>
             </Card>
           </Grid>

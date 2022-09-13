@@ -57,29 +57,41 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+type ProductsProps = {
+  products?:
+    | {
+        id: number;
+        title: string;
+        price: number;
+        rating: { rate: number; count: number };
+        image: string;
+        category: string;
+        description: string;
+      }[]
+    | null;
+};
 
-const ResponsiveAppBar = () => {
+const ResponsiveAppBar = ({ products }: ProductsProps) => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
-  );
+  const [Cart, setCart] = React.useState<null | ProductsProps>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
+  const handleOpenCart = (event: React.MouseEvent<HTMLElement>) => {
+    setCart(null);
   };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
+  const handleCloseCart = () => {
+    setCart(null);
   };
+  const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
   return (
     <AppBar position="static">
@@ -89,7 +101,6 @@ const ResponsiveAppBar = () => {
             variant="h6"
             noWrap
             component="a"
-            href="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -101,7 +112,9 @@ const ResponsiveAppBar = () => {
               marginRight: "16rem",
             }}
           >
-            Starr
+            <Link className="menu-link" to="/">
+              Starr
+            </Link>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -156,7 +169,7 @@ const ResponsiveAppBar = () => {
               </MenuItem>
             </Menu>
           </Box>
-          
+
           <Typography
             variant="h5"
             noWrap
@@ -173,7 +186,9 @@ const ResponsiveAppBar = () => {
               textDecoration: "none",
             }}
           >
-            Starr
+            <Link className="menu-link" to="/">
+              Starr
+            </Link>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <Button
@@ -211,16 +226,26 @@ const ResponsiveAppBar = () => {
             />
           </Search>
 
-          <Box px={1} sx={{ flexGrow: 0 }}>
+          {/* <Box px={1} sx={{ flexGrow: 0 }}>
+          
             <Tooltip title="Open Cart">
               <Typography textAlign="center">
-                <div className="cart">
-                  <span>
-                    <BsCart4 color="gray" fontSize="1.5em" />
-                    <div className="num-cart">1</div>
-                  </span>
-                </div>
+                
               </Typography>
+            </Tooltip>
+          </Box> */}
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open Cart">
+              <IconButton onClick={handleOpenCart} sx={{ px: 1 }}>
+                <Typography textAlign="center">
+                  <div className="cart">
+                    <span>
+                      <BsCart4 color="gray" fontSize="1.5em" />
+                      <div className="num-cart">1</div>
+                    </span>
+                  </div>
+                </Typography>
+              </IconButton>
             </Tooltip>
           </Box>
         </Toolbar>
