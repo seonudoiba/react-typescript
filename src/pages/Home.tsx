@@ -41,18 +41,26 @@ const Home = ({ products }: ProductsProps) => {
   //   console.log(star)
   //   console.log('star')
   return (
-    <Box
-      sx={{ flexGrow: 1}}
-      pt={0.5}
-    >
+    <Box sx={{ flexGrow: 1 }} pt={0.5}>
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
         {products?.map((product, index) => (
-          <Grid sx={{ display: "flex", justifyContent: "center", alignItems: "center"}} item xs={12} sm={4} md={3} key={index}>
-            <Card sx={{ maxWidth: 410 }}>
+          <Grid
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+            item
+            xs={12}
+            sm={4}
+            md={3}
+            key={index}
+          >
+            <Card sx={{ maxWidth: 350 }}>
               <CardActionArea>
                 {/* <CardMedia
                   component="img"
