@@ -51,7 +51,7 @@ function App() {
 
     genRandomKey();
   }, []);
-  console.log(Products);
+
   return (
     <Router>
       <Navbar products={Products} CartList={CartList} />

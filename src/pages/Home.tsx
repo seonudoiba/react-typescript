@@ -5,7 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import { Button, CardActionArea } from "@mui/material";
-import { useState } from "react";
+import useLocalStorage from '../utils/useLocalStorage'
 
 type ProductsProps = {
   products:
@@ -27,12 +27,34 @@ type Props = ProductsProps & CartProps;
 const Home: React.FC<Props> = ({ products, getCart }) => {
   // const star = useContext(FavContext);
 
-  let [Cart, SetCart] = useState<string[]>([]);
+  let [Cart, SetCart] = useLocalStorage('Cart',[]);
   getCart(Cart)
 
-  let AddToCart = (event: React.MouseEvent<HTMLElement>) : void=> {
+  let AddToCart = (event: React.MouseEvent<HTMLElement>)=> {
     let eventer = event.target as HTMLInputElement
     SetCart([...Cart, JSON.parse(eventer.value)]);
+
+    // useEffect(() => {
+    //   localStorage.setItem('Cartlist', JSON.stringify(CartList));
+    // }, [CartList]);
+    // ///
+    
+    // localStorage.getItem(Cartlist: string) {
+    //     const item = localStorage.getItem(key)
+    
+    //     if (item === null) return undefined
+    
+    //     if (item === "null") return null
+    //     if (item === "undefined") return undefined
+    
+    //     try {
+    //       return JSON.parse(item)
+    //     } catch {}
+    
+    //     return item
+    //   }
+    
+    // //
     
     // SetCart({
     //     id: 5,

@@ -104,7 +104,7 @@ const ResponsiveAppBar: React.FC<Props> = ({ products, CartList }) => {
     setCart(null);
   };
   const settings = ["Profile", "Account", "Dashboard", "Logout"];
-  console.log(1);
+
 
   return (
     <AppBar position="static">
